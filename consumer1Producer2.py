@@ -4,7 +4,7 @@ import sys
 
 # aqui acrescentei a subscricao direta com o TOPIC1, que foi definido nas constantes:
 # e ele vai pegar publicacoes antigas tambem
-consumer = KafkaConsumer(TOPIC1, bootstrap_servers=[BROKER_ADDR + ':' + BROKER_PORT], auto_offset_reset='earliest')
+consumer = KafkaConsumer(TOPIC1, bootstrap_servers=[BROKER_ADDR + ':' + BROKER_PORT])
 producer = KafkaProducer(bootstrap_servers=[BROKER_ADDR + ':' + BROKER_PORT])
 
 for msg in consumer:

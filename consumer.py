@@ -9,7 +9,10 @@ producer = KafkaProducer(bootstrap_servers=[BROKER_ADDR + ':' + BROKER_PORT])
 
 for msg in consumer:
     received_text = msg.value.decode()
-    print ('Recebido de ' + TOPIC1 + ':' + received_text)
-    processed_text = 'Processed ' + received_text.upper()
+    print('Received from ' + TOPIC1 + ': ' + received_text)
+    
+    processed_text = f'Processed by consumer1/producer2 | source_topic={TOPIC1} | dest_topic={TOPIC2} | content={received_text.upper()}'
+    print('Republishing to ' + TOPIC2 + ': ' + processed_text)
+    
     producer.send(TOPIC2, value=processed_text.encode())
     producer.flush()
